@@ -1,0 +1,9 @@
+const LatestForumPosts = () => {
+  return (
+    <section className="py-20 text-center">
+      <h2 className="text-4xl font-bold">Latest Forum Posts</h2>
+    </section>
+  );
+};
+
+export default LatestForumPosts;
