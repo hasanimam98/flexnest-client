@@ -19,18 +19,25 @@ const navLinks = [
   },
 ];
 
+
 const Navbar = () => {
+
   const [open, setOpen] = useState(false);
 
+
   return (
+
     <header className="sticky top-0 z-50 bg-white shadow-sm">
+
       <nav className="max-w-7xl mx-auto px-5 h-20 flex items-center justify-between">
-        
+
+
         {/* Logo */}
-        <Link
+          <Link
           href="/"
           className="flex items-center gap-2"
         >
+
           <Dumbbell
             className="text-green-600"
             size={30}
@@ -39,69 +46,150 @@ const Navbar = () => {
           <span className="text-2xl font-bold">
             FlexNest
           </span>
+
         </Link>
 
+
+
         {/* Desktop Menu */}
+
         <ul className="hidden lg:flex items-center gap-8 font-medium">
-          {navLinks.map((link) => (
+
+          {navLinks.map((link)=>(
+
             <li key={link.href}>
+
               <Link
                 href={link.href}
                 className="hover:text-green-600 transition"
               >
                 {link.name}
               </Link>
+
             </li>
+
           ))}
+
         </ul>
 
-        {/* Right Side */}
+
+    {/* Desktop Auth Buttons */}
+
         <div className="hidden lg:flex items-center gap-3">
+
+
           <Link
             href="/login"
-            className="btn btn-success"
+            className="px-5 py-2 rounded-full border border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition"
           >
             Login
           </Link>
+
+
+
+          <Link
+            href="/register"
+            className="px-5 py-2 rounded-full bg-green-600 text-white hover:bg-green-700 transition"
+          >
+            Register
+          </Link>
+
+
         </div>
+
+
+
+
 
         {/* Mobile Button */}
+
+
+
         <button
-          onClick={() => setOpen(!open)}
+          onClick={()=>setOpen(!open)}
           className="lg:hidden"
         >
-          {open ? <X size={28} /> : <Menu size={28} />}
+
+          {
+            open 
+            ? 
+            <X size={28}/>
+            :
+            <Menu size={28}/>
+          }
+
         </button>
+
+
       </nav>
 
+
+
+
+
       {/* Mobile Menu */}
-      {open && (
-        <div className="lg:hidden bg-white border-t">
-          <ul className="flex flex-col p-5 gap-4">
 
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
+      {
+        open && (
 
-            <Link
-              href="/login"
-              className="btn btn-success w-full"
-            >
-              Login
-            </Link>
+          <div className="lg:hidden bg-white border-t">
 
-          </ul>
-        </div>
-      )}
+            <ul className="flex flex-col p-5 gap-4">
+
+
+              {
+                navLinks.map((link)=>(
+
+                  <li key={link.href}>
+
+                    <Link
+                      href={link.href}
+                      onClick={()=>setOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+
+
+                  </li>
+
+                ))
+              }
+
+
+
+              <Link
+                href="/login"
+                onClick={()=>setOpen(false)}
+                className="text-center px-5 py-2 rounded-full border border-green-600 text-green-600"
+              >
+                Login
+              </Link>
+
+
+
+
+              <Link
+                href="/register"
+                onClick={()=>setOpen(false)}
+                className="text-center px-5 py-2 rounded-full bg-green-600 text-white"
+              >
+                Register
+              </Link>
+
+
+
+            </ul>
+
+          </div>
+
+        )
+      }
+
+
     </header>
+
   );
 };
+
 
 export default Navbar;
